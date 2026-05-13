@@ -1,12 +1,17 @@
 'use client';
 
+import DashboardLayout from '@/components/layout/DashboardLayout';
+
 import PortfolioSummary from '@/components/dashboard/advisor/PortfolioSummary';
 import ClientList from '@/components/dashboard/advisor/ClientList';
+import PerformanceInsights from '@/components/dashboard/advisor/PerformanceInsights';
 
 export default function AdvisorPage() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout>
+
+      <div className="space-y-6">
+
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
             Advisor Dashboard
@@ -20,7 +25,11 @@ export default function AdvisorPage() {
         <PortfolioSummary />
 
         <ClientList />
+
+        <PerformanceInsights />
+
       </div>
-    </div>
+
+    </DashboardLayout>
   );
 }
