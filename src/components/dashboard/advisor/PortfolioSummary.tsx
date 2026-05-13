@@ -1,32 +1,74 @@
+'use client';
+
+import {
+  DollarSign,
+  TrendingUp,
+  Users,
+} from 'lucide-react';
+
+const metrics = [
+  {
+    title: 'Total Portfolio',
+    value: '$12.4M',
+    growth: '+15.2%',
+    icon: DollarSign,
+    color: 'bg-blue-100 text-blue-600',
+  },
+  {
+    title: 'Growth Rate',
+    value: '18.4%',
+    growth: '+4.1%',
+    icon: TrendingUp,
+    color: 'bg-green-100 text-green-600',
+  },
+  {
+    title: 'Active Clients',
+    value: '248',
+    growth: '+12',
+    icon: Users,
+    color: 'bg-purple-100 text-purple-600',
+  },
+];
+
 export default function PortfolioSummary() {
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">
-        Portfolio Summary
-      </h2>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-blue-100 p-4 rounded-lg">
-          <p className="text-gray-600">Total Value</p>
-          <h3 className="text-2xl font-bold text-blue-600">
-            $12.4M
-          </h3>
-        </div>
+      {metrics.map((item, index) => {
+        const Icon = item.icon;
 
-        <div className="bg-green-100 p-4 rounded-lg">
-          <p className="text-gray-600">Growth</p>
-          <h3 className="text-2xl font-bold text-green-600">
-            +15.2%
-          </h3>
-        </div>
+        return (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow p-6"
+          >
 
-        <div className="bg-purple-100 p-4 rounded-lg">
-          <p className="text-gray-600">Clients</p>
-          <h3 className="text-2xl font-bold text-purple-600">
-            248
-          </h3>
-        </div>
-      </div>
+            <div className="flex items-center justify-between mb-4">
+
+              <div>
+                <p className="text-sm text-gray-500">
+                  {item.title}
+                </p>
+
+                <h3 className="text-3xl font-bold text-gray-900 mt-2">
+                  {item.value}
+                </h3>
+              </div>
+
+              <div className={`p-3 rounded-xl ${item.color}`}>
+                <Icon size={24} />
+              </div>
+
+            </div>
+
+            <p className="text-green-600 font-semibold">
+              {item.growth} this month
+            </p>
+
+          </div>
+        );
+      })}
+
     </div>
   );
 }

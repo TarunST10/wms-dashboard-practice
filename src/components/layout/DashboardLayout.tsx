@@ -2,11 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 import {
   Briefcase,
   Settings,
   ShieldCheck,
+  Menu,
+  X,
 } from 'lucide-react';
 
 export default function DashboardLayout({
@@ -17,11 +20,20 @@ export default function DashboardLayout({
 
   const pathname = usePathname();
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="min-h-screen flex bg-gray-100">
 
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-lg p-6 hidden md:block">
+      <aside
+        className={`
+          fixed md:static z-50 top-0 left-0 h-full w-64
+          bg-white shadow-lg p-6 transition-transform
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          md:translate-x-0
+        `}
+      >
 
         <h1 className="text-2xl font-bold text-blue-600 mb-10">
           WMS Dashboard
@@ -66,6 +78,7 @@ export default function DashboardLayout({
           </Link>
 
         </nav>
+
       </aside>
 
       {/* Main Content */}
@@ -74,14 +87,25 @@ export default function DashboardLayout({
         {/* Top Navbar */}
         <header className="bg-white shadow-sm border-b px-6 py-4 flex items-center justify-between">
 
-          <div>
-            <h2 className="text-xl font-bold text-gray-900">
-              Wealth Management System
-            </h2>
+          <div className="flex items-center gap-4">
 
-            <p className="text-sm text-gray-500">
-              Analytics Dashboard
-            </p>
+            <button
+              className="md:hidden"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              {sidebarOpen ? <X /> : <Menu />}
+            </button>
+
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">
+                Wealth Management System
+              </h2>
+
+              <p className="text-sm text-gray-500">
+                Analytics Dashboard
+              </p>
+            </div>
+
           </div>
 
           <div className="flex items-center gap-4">

@@ -1,37 +1,37 @@
 'use client';
 
 import {
-  Activity,
-  Server,
-  Database,
+  AlertTriangle,
+  Shield,
+  CheckCircle,
 } from 'lucide-react';
 
-const metrics = [
+const risks = [
   {
-    title: 'Processes Running',
-    value: '128',
-    icon: Activity,
-    color: 'bg-blue-100 text-blue-600',
-  },
-  {
-    title: 'Servers Active',
-    value: '24',
-    icon: Server,
+    title: 'Low Risk Accounts',
+    value: '124',
+    icon: CheckCircle,
     color: 'bg-green-100 text-green-600',
   },
   {
-    title: 'Database Health',
-    value: '99.9%',
-    icon: Database,
-    color: 'bg-purple-100 text-purple-600',
+    title: 'Medium Risk Accounts',
+    value: '32',
+    icon: Shield,
+    color: 'bg-yellow-100 text-yellow-600',
+  },
+  {
+    title: 'High Risk Accounts',
+    value: '8',
+    icon: AlertTriangle,
+    color: 'bg-red-100 text-red-600',
   },
 ];
 
-export default function ProcessMetrics() {
+export default function RiskAssessment() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      {metrics.map((item, index) => {
+      {risks.map((item, index) => {
         const Icon = item.icon;
 
         return (

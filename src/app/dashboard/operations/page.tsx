@@ -4,6 +4,7 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 
 import ProcessMetrics from '@/components/dashboard/operations/ProcessMetrics';
 import SystemHealth from '@/components/dashboard/operations/SystemHealth';
+import ResourceUtilization from '@/components/dashboard/operations/ResourceUtilization';
 
 export default function OperationsPage() {
   return (
@@ -22,6 +23,8 @@ export default function OperationsPage() {
         </div>
 
         <ProcessMetrics />
+
+        <ResourceUtilization />
 
         <SystemHealth />
 

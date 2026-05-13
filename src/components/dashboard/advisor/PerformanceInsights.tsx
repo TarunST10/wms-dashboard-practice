@@ -2,58 +2,74 @@
 
 import {
   ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
+  PieChart,
+  Pie,
+  Cell,
   Tooltip,
 } from 'recharts';
 
 const data = [
-  { month: 'Jan', revenue: 2400 },
-  { month: 'Feb', revenue: 2800 },
-  { month: 'Mar', revenue: 3200 },
-  { month: 'Apr', revenue: 3000 },
-  { month: 'May', revenue: 3600 },
-  { month: 'Jun', revenue: 4200 },
+  { name: 'Equity', value: 45 },
+  { name: 'Mutual Funds', value: 25 },
+  { name: 'Fixed Income', value: 20 },
+  { name: 'Cash', value: 10 },
+];
+
+const COLORS = [
+  '#2563eb',
+  '#16a34a',
+  '#9333ea',
+  '#f59e0b',
 ];
 
 export default function PerformanceInsights() {
   return (
     <div className="bg-white rounded-2xl shadow p-6">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">
-            Performance Insights
-          </h2>
 
-          <p className="text-gray-500">
-            Portfolio revenue growth
-          </p>
-        </div>
+      <div className="mb-6">
+
+        <h2 className="text-2xl font-bold text-gray-900">
+          Asset Allocation
+        </h2>
+
+        <p className="text-gray-500">
+          Portfolio distribution overview
+        </p>
+
       </div>
 
       <div className="h-80">
+
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
 
-            <XAxis dataKey="month" />
+          <PieChart>
 
-            <YAxis />
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              dataKey="value"
+              label
+            >
+
+              {data.map((entry, index) => (
+                <Cell
+                  key={index}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+
+            </Pie>
 
             <Tooltip />
 
-            <Line
-              type="monotone"
-              dataKey="revenue"
-              stroke="#2563eb"
-              strokeWidth={4}
-            />
-          </LineChart>
+          </PieChart>
+
         </ResponsiveContainer>
+
       </div>
+
     </div>
   );
 }

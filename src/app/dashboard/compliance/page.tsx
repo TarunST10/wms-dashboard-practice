@@ -1,11 +1,15 @@
 'use client';
 
+import DashboardLayout from '@/components/layout/DashboardLayout';
+
 import RegulatoryStatus from '@/components/dashboard/compliance/RegulatoryStatus';
+import RiskAssessment from '@/components/dashboard/compliance/RiskAssessment';
 
 export default function CompliancePage() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <DashboardLayout>
+
+      <div className="space-y-6">
 
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
@@ -17,9 +21,12 @@ export default function CompliancePage() {
           </p>
         </div>
 
+        <RiskAssessment />
+
         <RegulatoryStatus />
 
       </div>
-    </div>
+
+    </DashboardLayout>
   );
 }
