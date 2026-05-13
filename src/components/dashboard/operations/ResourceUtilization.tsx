@@ -10,6 +10,8 @@ import {
   CartesianGrid,
 } from 'recharts';
 
+import ChartCard from '@/components/dashboard/shared/ChartCard';
+
 const data = [
   { name: 'Mon', usage: 65 },
   { name: 'Tue', usage: 72 },
@@ -21,46 +23,33 @@ const data = [
 
 export default function ResourceUtilization() {
   return (
-    <div className="bg-white rounded-2xl shadow p-6">
+    <ChartCard
+      title="Resource Utilization"
+      description="Weekly server usage analytics"
+    >
 
-      <div className="mb-6">
+      <ResponsiveContainer width="100%" height="100%">
 
-        <h2 className="text-2xl font-bold text-gray-900">
-          Resource Utilization
-        </h2>
+        <BarChart data={data}>
 
-        <p className="text-gray-500">
-          Weekly server usage analytics
-        </p>
+          <CartesianGrid strokeDasharray="3 3" />
 
-      </div>
+          <XAxis dataKey="name" />
 
-      <div className="h-80">
+          <YAxis />
 
-        <ResponsiveContainer width="100%" height="100%">
+          <Tooltip />
 
-          <BarChart data={data}>
+          <Bar
+            dataKey="usage"
+            fill="#2563eb"
+            radius={[10, 10, 0, 0]}
+          />
 
-            <CartesianGrid strokeDasharray="3 3" />
+        </BarChart>
 
-            <XAxis dataKey="name" />
+      </ResponsiveContainer>
 
-            <YAxis />
-
-            <Tooltip />
-
-            <Bar
-              dataKey="usage"
-              fill="#2563eb"
-              radius={[10, 10, 0, 0]}
-            />
-
-          </BarChart>
-
-        </ResponsiveContainer>
-
-      </div>
-
-    </div>
+    </ChartCard>
   );
 }

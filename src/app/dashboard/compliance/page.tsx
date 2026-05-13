@@ -4,6 +4,7 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 
 import RegulatoryStatus from '@/components/dashboard/compliance/RegulatoryStatus';
 import RiskAssessment from '@/components/dashboard/compliance/RiskAssessment';
+import AuditTracking from '@/components/dashboard/compliance/AuditTracking';
 
 export default function CompliancePage() {
   return (
@@ -17,11 +18,13 @@ export default function CompliancePage() {
           </h1>
 
           <p className="text-gray-600 mt-2">
-            Regulatory tracking and compliance overview.
+            Regulatory monitoring and audit analytics.
           </p>
         </div>
 
         <RiskAssessment />
+
+        <AuditTracking />
 
         <RegulatoryStatus />
 

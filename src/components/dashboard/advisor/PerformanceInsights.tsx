@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from 'recharts';
 
+import ChartCard from '@/components/dashboard/shared/ChartCard';
+
 const data = [
   { name: 'Equity', value: 45 },
   { name: 'Mutual Funds', value: 25 },
@@ -24,52 +26,39 @@ const COLORS = [
 
 export default function PerformanceInsights() {
   return (
-    <div className="bg-white rounded-2xl shadow p-6">
+    <ChartCard
+      title="Asset Allocation"
+      description="Portfolio distribution overview"
+    >
 
-      <div className="mb-6">
+      <ResponsiveContainer width="100%" height="100%">
 
-        <h2 className="text-2xl font-bold text-gray-900">
-          Asset Allocation
-        </h2>
+        <PieChart>
 
-        <p className="text-gray-500">
-          Portfolio distribution overview
-        </p>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            outerRadius={100}
+            dataKey="value"
+            label
+          >
 
-      </div>
+            {data.map((entry, index) => (
+              <Cell
+                key={index}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
 
-      <div className="h-80">
+          </Pie>
 
-        <ResponsiveContainer width="100%" height="100%">
+          <Tooltip />
 
-          <PieChart>
+        </PieChart>
 
-            <Pie
-              data={data}
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-              dataKey="value"
-              label
-            >
+      </ResponsiveContainer>
 
-              {data.map((entry, index) => (
-                <Cell
-                  key={index}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
-
-            </Pie>
-
-            <Tooltip />
-
-          </PieChart>
-
-        </ResponsiveContainer>
-
-      </div>
-
-    </div>
+    </ChartCard>
   );
 }
