@@ -10,12 +10,9 @@ import {
 
 import ChartCard from '@/components/dashboard/shared/ChartCard';
 
-const data = [
-  { name: 'Equity', value: 45 },
-  { name: 'Mutual Funds', value: 25 },
-  { name: 'Fixed Income', value: 20 },
-  { name: 'Cash', value: 10 },
-];
+import {
+  portfolioAllocation,
+} from '@/lib/mock-data/advisor';
 
 const COLORS = [
   '#2563eb',
@@ -36,7 +33,7 @@ export default function PerformanceInsights() {
         <PieChart>
 
           <Pie
-            data={data}
+            data={portfolioAllocation}
             cx="50%"
             cy="50%"
             outerRadius={100}
@@ -44,7 +41,7 @@ export default function PerformanceInsights() {
             label
           >
 
-            {data.map((entry, index) => (
+            {portfolioAllocation.map((entry, index) => (
               <Cell
                 key={index}
                 fill={COLORS[index % COLORS.length]}

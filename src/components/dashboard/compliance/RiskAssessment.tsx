@@ -6,63 +6,32 @@ import {
   CheckCircle,
 } from 'lucide-react';
 
-const risks = [
-  {
-    title: 'Low Risk Accounts',
-    value: '124',
-    icon: CheckCircle,
-    color: 'bg-green-100 text-green-600',
-  },
-  {
-    title: 'Medium Risk Accounts',
-    value: '32',
-    icon: Shield,
-    color: 'bg-yellow-100 text-yellow-600',
-  },
-  {
-    title: 'High Risk Accounts',
-    value: '8',
-    icon: AlertTriangle,
-    color: 'bg-red-100 text-red-600',
-  },
+import KPICard from '@/components/dashboard/shared/KPICard';
+
+import {
+  riskAssessmentData,
+} from '@/lib/mock-data/compliance';
+
+const icons = [
+  <CheckCircle size={24} />,
+  <Shield size={24} />,
+  <AlertTriangle size={24} />,
 ];
 
 export default function RiskAssessment() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      {risks.map((item, index) => {
-        const Icon = item.icon;
-
-        return (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow p-6"
-          >
-
-            <div className="flex items-center justify-between">
-
-              <div>
-
-                <p className="text-sm text-gray-500">
-                  {item.title}
-                </p>
-
-                <h3 className="text-3xl font-bold text-gray-900 mt-2">
-                  {item.value}
-                </h3>
-
-              </div>
-
-              <div className={`p-3 rounded-xl ${item.color}`}>
-                <Icon size={24} />
-              </div>
-
-            </div>
-
-          </div>
-        );
-      })}
+      {riskAssessmentData.map((item, index) => (
+        <KPICard
+          key={index}
+          title={item.title}
+          value={item.value}
+          change="Updated today"
+          icon={icons[index]}
+          color={item.color}
+        />
+      ))}
 
     </div>
   );

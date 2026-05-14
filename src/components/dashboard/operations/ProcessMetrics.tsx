@@ -6,63 +6,32 @@ import {
   Database,
 } from 'lucide-react';
 
-const metrics = [
-  {
-    title: 'Processes Running',
-    value: '128',
-    icon: Activity,
-    color: 'bg-blue-100 text-blue-600',
-  },
-  {
-    title: 'Servers Active',
-    value: '24',
-    icon: Server,
-    color: 'bg-green-100 text-green-600',
-  },
-  {
-    title: 'Database Health',
-    value: '99.9%',
-    icon: Database,
-    color: 'bg-purple-100 text-purple-600',
-  },
+import KPICard from '@/components/dashboard/shared/KPICard';
+
+import {
+  operationsMetrics,
+} from '@/lib/mock-data/operations';
+
+const icons = [
+  <Activity size={24} />,
+  <Server size={24} />,
+  <Database size={24} />,
 ];
 
 export default function ProcessMetrics() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      {metrics.map((item, index) => {
-        const Icon = item.icon;
-
-        return (
-          <div
-            key={index}
-            className="bg-white rounded-2xl shadow p-6"
-          >
-
-            <div className="flex items-center justify-between">
-
-              <div>
-
-                <p className="text-sm text-gray-500">
-                  {item.title}
-                </p>
-
-                <h3 className="text-3xl font-bold text-gray-900 mt-2">
-                  {item.value}
-                </h3>
-
-              </div>
-
-              <div className={`p-3 rounded-xl ${item.color}`}>
-                <Icon size={24} />
-              </div>
-
-            </div>
-
-          </div>
-        );
-      })}
+      {operationsMetrics.map((item, index) => (
+        <KPICard
+          key={index}
+          title={item.title}
+          value={item.value}
+          change="Live monitoring"
+          icon={icons[index]}
+          color={item.color}
+        />
+      ))}
 
     </div>
   );

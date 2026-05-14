@@ -2,6 +2,10 @@
 
 import DataTable from '@/components/dashboard/shared/DataTable';
 
+import {
+  clientTableData,
+} from '@/lib/mock-data/advisor';
+
 const columns = [
   {
     key: 'name',
@@ -17,35 +21,12 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    name: 'John Smith',
-    portfolio: '$2.4M',
-    growth: '+12%',
-  },
-  {
-    name: 'Emma Johnson',
-    portfolio: '$1.8M',
-    growth: '+8%',
-  },
-  {
-    name: 'Michael Brown',
-    portfolio: '$3.1M',
-    growth: '+15%',
-  },
-  {
-    name: 'Sophia Wilson',
-    portfolio: '$4.2M',
-    growth: '+18%',
-  },
-];
-
 export default function ClientList() {
   return (
     <DataTable
       title="Client Portfolio Overview"
       columns={columns}
-      data={data}
+      data={clientTableData}
     />
   );
 }

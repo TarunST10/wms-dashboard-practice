@@ -6,28 +6,20 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-const insights = [
-  {
-    title: 'Portfolio Growth',
-    description:
-      'Client portfolios increased by 18.2% this quarter.',
-    icon: TrendingUp,
-    color: 'text-green-600',
-  },
-  {
-    title: 'Compliance Alert',
-    description:
-      '3 medium-risk accounts require additional review.',
-    icon: AlertTriangle,
-    color: 'text-orange-600',
-  },
-  {
-    title: 'AI Recommendation',
-    description:
-      'Increase equity allocation by 6% for balanced portfolios.',
-    icon: Sparkles,
-    color: 'text-blue-600',
-  },
+import {
+  aiInsightsData,
+} from '@/lib/mock-data/executive';
+
+const icons = [
+  <TrendingUp size={24} />,
+  <AlertTriangle size={24} />,
+  <Sparkles size={24} />,
+];
+
+const colors = [
+  'text-green-600',
+  'text-orange-600',
+  'text-blue-600',
 ];
 
 export default function AIInsights() {
@@ -48,38 +40,34 @@ export default function AIInsights() {
 
       <div className="space-y-4">
 
-        {insights.map((item, index) => {
-          const Icon = item.icon;
+        {aiInsightsData.map((item, index) => (
+          <div
+            key={index}
+            className="border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
+          >
 
-          return (
-            <div
-              key={index}
-              className="border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
-            >
+            <div className="flex items-start gap-4">
 
-              <div className="flex items-start gap-4">
+              <div className={colors[index]}>
+                {icons[index]}
+              </div>
 
-                <div className={`${item.color}`}>
-                  <Icon size={24} />
-                </div>
+              <div>
 
-                <div>
+                <h3 className="font-semibold text-gray-900">
+                  {item.title}
+                </h3>
 
-                  <h3 className="font-semibold text-gray-900">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-gray-500 mt-1">
-                    {item.description}
-                  </p>
-
-                </div>
+                <p className="text-gray-500 mt-1">
+                  {item.description}
+                </p>
 
               </div>
 
             </div>
-          );
-        })}
+
+          </div>
+        ))}
 
       </div>
 

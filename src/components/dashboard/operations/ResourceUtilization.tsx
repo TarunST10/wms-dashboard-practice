@@ -12,14 +12,9 @@ import {
 
 import ChartCard from '@/components/dashboard/shared/ChartCard';
 
-const data = [
-  { name: 'Mon', usage: 65 },
-  { name: 'Tue', usage: 72 },
-  { name: 'Wed', usage: 68 },
-  { name: 'Thu', usage: 81 },
-  { name: 'Fri', usage: 75 },
-  { name: 'Sat', usage: 58 },
-];
+import {
+  resourceUtilizationData,
+} from '@/lib/mock-data/operations';
 
 export default function ResourceUtilization() {
   return (
@@ -30,7 +25,7 @@ export default function ResourceUtilization() {
 
       <ResponsiveContainer width="100%" height="100%">
 
-        <BarChart data={data}>
+        <BarChart data={resourceUtilizationData}>
 
           <CartesianGrid strokeDasharray="3 3" />
 

@@ -11,6 +11,8 @@ import RiskAssessment from '@/components/dashboard/compliance/RiskAssessment';
 
 import StatsOverview from '@/components/dashboard/shared/StatsOverview';
 
+import AIInsights from '@/components/dashboard/shared/AIInsights';
+
 export default function ExecutivePage() {
   return (
     <DashboardLayout>
@@ -42,6 +44,8 @@ export default function ExecutivePage() {
         </div>
 
         <RiskAssessment />
+
+        <AIInsights />
 
       </div>
 
