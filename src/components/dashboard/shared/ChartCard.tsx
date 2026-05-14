@@ -12,7 +12,7 @@ export default function ChartCard({
   children,
 }: Props) {
   return (
-    <div className="bg-white rounded-2xl shadow p-6">
+    <div className="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition-all duration-300">
 
       <div className="mb-6">
 

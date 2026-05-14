@@ -5,13 +5,11 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 import PortfolioSummary from '@/components/dashboard/advisor/PortfolioSummary';
 import PerformanceInsights from '@/components/dashboard/advisor/PerformanceInsights';
 
-import ResourceUtilization from '@/components/dashboard/operations/ResourceUtilization';
-
 import RiskAssessment from '@/components/dashboard/compliance/RiskAssessment';
 
-import StatsOverview from '@/components/dashboard/shared/StatsOverview';
-
-import AIInsights from '@/components/dashboard/shared/AIInsights';
+import ExecutiveOverview from '@/components/dashboard/executive/ExecutiveOverview';
+import RevenueAnalytics from '@/components/dashboard/executive/RevenueAnalytics';
+import ExecutiveInsights from '@/components/dashboard/executive/ExecutiveInsights';
 
 export default function ExecutivePage() {
   return (
@@ -31,7 +29,7 @@ export default function ExecutivePage() {
 
         </div>
 
-        <StatsOverview />
+        <ExecutiveOverview />
 
         <PortfolioSummary />
 
@@ -39,13 +37,13 @@ export default function ExecutivePage() {
 
           <PerformanceInsights />
 
-          <ResourceUtilization />
+          <RevenueAnalytics />
 
         </div>
 
         <RiskAssessment />
 
-        <AIInsights />
+        <ExecutiveInsights />
 
       </div>
 

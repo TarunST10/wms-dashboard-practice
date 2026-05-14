@@ -68,6 +68,7 @@ export default function DashboardLayout({
 
           <Link
             href="/dashboard/executive"
+            onClick={() => setSidebarOpen(false)}
             className={`flex items-center gap-3 p-3 rounded-xl transition ${
               pathname === '/dashboard/executive'
                 ? 'bg-blue-600 text-white'
@@ -80,6 +81,7 @@ export default function DashboardLayout({
 
           <Link
             href="/dashboard/advisor"
+            onClick={() => setSidebarOpen(false)}
             className={`flex items-center gap-3 p-3 rounded-xl transition ${
               pathname === '/dashboard/advisor'
                 ? 'bg-blue-600 text-white'
@@ -92,6 +94,7 @@ export default function DashboardLayout({
 
           <Link
             href="/dashboard/operations"
+            onClick={() => setSidebarOpen(false)}
             className={`flex items-center gap-3 p-3 rounded-xl transition ${
               pathname === '/dashboard/operations'
                 ? 'bg-blue-600 text-white'
@@ -104,6 +107,7 @@ export default function DashboardLayout({
 
           <Link
             href="/dashboard/compliance"
+            onClick={() => setSidebarOpen(false)}
             className={`flex items-center gap-3 p-3 rounded-xl transition ${
               pathname === '/dashboard/compliance'
                 ? 'bg-blue-600 text-white'

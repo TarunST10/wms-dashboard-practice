@@ -17,7 +17,7 @@ export default function DataTable({
   data,
 }: Props) {
   return (
-    <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto">
+    <div className="bg-white rounded-2xl shadow p-6 overflow-x-auto hover:shadow-xl transition-all duration-300">
 
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         {title}

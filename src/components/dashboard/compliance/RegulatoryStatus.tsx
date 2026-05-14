@@ -18,11 +18,19 @@ const columns = [
 ];
 
 export default function RegulatoryStatus() {
+  const enhancedData = regulatoryStatusData.map((item) => ({
+    ...item,
+    status:
+      item.status === 'Completed'
+        ? '✅ Completed'
+        : '⚠️ Pending',
+  }));
+
   return (
     <DataTable
       title="Regulatory Status"
       columns={columns}
-      data={regulatoryStatusData}
+      data={enhancedData}
     />
   );
 }

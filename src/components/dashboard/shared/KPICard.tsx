@@ -16,7 +16,7 @@ export default function KPICard({
   color,
 }: Props) {
   return (
-    <div className="bg-white rounded-2xl shadow p-6">
+    <div className="bg-white rounded-2xl shadow p-6 hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
 
       <div className="flex items-center justify-between">
 

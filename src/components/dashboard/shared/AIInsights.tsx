@@ -24,7 +24,7 @@ const colors = [
 
 export default function AIInsights() {
   return (
-    <div className="bg-white rounded-2xl shadow p-6">
+    <div className="bg-white rounded-2xl shadow p-6 hover:shadow-xl transition-all duration-300">
 
       <div className="mb-6">
 
@@ -43,7 +43,7 @@ export default function AIInsights() {
         {aiInsightsData.map((item, index) => (
           <div
             key={index}
-            className="border border-gray-200 rounded-xl p-4 hover:bg-gray-50 transition"
+            className="border border-gray-200 rounded-xl p-4 hover:bg-gray-50 hover:shadow-md transition-all duration-300"
           >
 
             <div className="flex items-start gap-4">
