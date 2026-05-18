@@ -1,50 +1,62 @@
 'use client';
 
 import {
-  ResponsiveContainer,
   BarChart,
   Bar,
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid,
+  ResponsiveContainer,
 } from 'recharts';
 
-import ChartCard from '@/components/dashboard/shared/ChartCard';
-
-import {
-  resourceUtilizationData,
-} from '@/lib/mock-data/operations';
+const data = [
+  { day: 'Mon', usage: 65 },
+  { day: 'Tue', usage: 72 },
+  { day: 'Wed', usage: 81 },
+  { day: 'Thu', usage: 75 },
+  { day: 'Fri', usage: 90 },
+];
 
 export default function ResourceUtilization() {
   return (
-    <ChartCard
-      title="Resource Utilization"
-      description="Weekly server usage analytics"
-    >
+    <div className="bg-white rounded-2xl shadow p-6">
 
-      <ResponsiveContainer width="100%" height="100%">
+      <div className="mb-6">
 
-        <BarChart data={resourceUtilizationData}>
+        <h2 className="text-2xl font-bold text-gray-900">
+          Resource Utilization
+        </h2>
 
-          <CartesianGrid strokeDasharray="3 3" />
+        <p className="text-gray-500 mt-1">
+          Weekly server usage analytics
+        </p>
 
-          <XAxis dataKey="name" />
+      </div>
 
-          <YAxis />
+      <div className="h-[300px] w-full">
 
-          <Tooltip />
+        <ResponsiveContainer width="100%" height="100%">
 
-          <Bar
-            dataKey="usage"
-            fill="#2563eb"
-            radius={[10, 10, 0, 0]}
-          />
+          <BarChart data={data}>
 
-        </BarChart>
+            <XAxis dataKey="day" />
 
-      </ResponsiveContainer>
+            <YAxis />
 
-    </ChartCard>
+            <Tooltip />
+
+            <Bar
+              dataKey="usage"
+              fill="#2563eb"
+              radius={[8, 8, 0, 0]}
+            />
+
+          </BarChart>
+
+        </ResponsiveContainer>
+
+      </div>
+
+    </div>
   );
 }

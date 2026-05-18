@@ -2,60 +2,63 @@
 
 import {
   ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
   Tooltip,
 } from 'recharts';
 
-import ChartCard from '@/components/dashboard/shared/ChartCard';
-
-import {
-  portfolioAllocation,
-} from '@/lib/mock-data/advisor';
-
-const COLORS = [
-  '#2563eb',
-  '#16a34a',
-  '#9333ea',
-  '#f59e0b',
+const data = [
+  { month: 'Jan', growth: 12 },
+  { month: 'Feb', growth: 18 },
+  { month: 'Mar', growth: 15 },
+  { month: 'Apr', growth: 22 },
+  { month: 'May', growth: 28 },
+  { month: 'Jun', growth: 32 },
 ];
 
 export default function PerformanceInsights() {
   return (
-    <ChartCard
-      title="Asset Allocation"
-      description="Portfolio distribution overview"
-    >
+    <div className="bg-white rounded-2xl shadow p-6">
 
-      <ResponsiveContainer width="100%" height="100%">
+      <div className="mb-6">
 
-        <PieChart>
+        <h2 className="text-2xl font-bold text-gray-900">
+          Performance Insights
+        </h2>
 
-          <Pie
-            data={portfolioAllocation}
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-            dataKey="value"
-            label
-          >
+        <p className="text-gray-500 mt-1">
+          Monthly portfolio growth analytics
+        </p>
 
-            {portfolioAllocation.map((entry, index) => (
-              <Cell
-                key={index}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
+      </div>
 
-          </Pie>
+      <div className="w-full h-[300px] min-w-0">
 
-          <Tooltip />
+        <ResponsiveContainer>
 
-        </PieChart>
+          <LineChart data={data}>
 
-      </ResponsiveContainer>
+            <XAxis dataKey="month" />
 
-    </ChartCard>
+            <YAxis />
+
+            <Tooltip />
+
+            <Line
+              type="monotone"
+              dataKey="growth"
+              stroke="#2563eb"
+              strokeWidth={3}
+            />
+
+          </LineChart>
+
+        </ResponsiveContainer>
+
+      </div>
+
+    </div>
   );
 }

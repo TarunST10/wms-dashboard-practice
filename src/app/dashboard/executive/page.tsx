@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import DashboardLayout from '@/components/layout/DashboardLayout';
 
 import PortfolioSummary from '@/components/dashboard/advisor/PortfolioSummary';
@@ -11,7 +13,14 @@ import ExecutiveOverview from '@/components/dashboard/executive/ExecutiveOvervie
 import RevenueAnalytics from '@/components/dashboard/executive/RevenueAnalytics';
 import ExecutiveInsights from '@/components/dashboard/executive/ExecutiveInsights';
 
+import DashboardFilters from '@/components/dashboard/shared/DashBoardFilters';
+
 export default function ExecutivePage() {
+
+  const [search, setSearch] = useState('');
+  const [status, setStatus] = useState('all');
+  const [period, setPeriod] = useState('30days');
+
   return (
     <DashboardLayout>
 
@@ -28,6 +37,15 @@ export default function ExecutivePage() {
           </p>
 
         </div>
+
+        <DashboardFilters
+          search={search}
+          setSearch={setSearch}
+          status={status}
+          setStatus={setStatus}
+          period={period}
+          setPeriod={setPeriod}
+        />
 
         <ExecutiveOverview />
 

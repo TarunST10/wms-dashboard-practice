@@ -1,10 +1,16 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import DataTable from '@/components/dashboard/shared/DataTable';
 
 import {
   clientTableData,
 } from '@/lib/mock-data/advisor';
+
+type Props = {
+  search?: string;
+};
 
 const columns = [
   {
@@ -21,12 +27,23 @@ const columns = [
   },
 ];
 
-export default function ClientList() {
+export default function ClientList({
+  search = '',
+}: Props) {
+
+  const filteredData = useMemo(() => {
+    return clientTableData.filter((client) =>
+      client.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    );
+  }, [search]);
+
   return (
     <DataTable
       title="Client Portfolio Overview"
       columns={columns}
-      data={clientTableData}
+      data={filteredData}
     />
   );
 }

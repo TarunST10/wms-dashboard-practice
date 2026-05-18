@@ -1,42 +1,26 @@
 'use client';
 
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
+  PieChart,
+  Pie,
+  Cell,
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
 
-const auditData = [
-  {
-    month: 'Jan',
-    completed: 24,
-  },
-  {
-    month: 'Feb',
-    completed: 31,
-  },
-  {
-    month: 'Mar',
-    completed: 28,
-  },
-  {
-    month: 'Apr',
-    completed: 36,
-  },
-  {
-    month: 'May',
-    completed: 42,
-  },
+const data = [
+  { name: 'Completed', value: 78 },
+  { name: 'Pending', value: 22 },
 ];
+
+const COLORS = ['#22c55e', '#f59e0b'];
 
 export default function AuditTracking() {
   return (
     <div className="bg-white rounded-2xl shadow p-6">
 
       <div className="mb-6">
+
         <h2 className="text-2xl font-bold text-gray-900">
           Audit Tracking
         </h2>
@@ -44,27 +28,36 @@ export default function AuditTracking() {
         <p className="text-gray-500 mt-1">
           Monthly completed audit reports
         </p>
+
       </div>
 
-      <div className="h-80">
+      <div className="h-[300px] w-full">
 
         <ResponsiveContainer width="100%" height="100%">
 
-          <BarChart data={auditData}>
+          <PieChart>
 
-            <XAxis dataKey="month" />
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+              dataKey="value"
+              label
+            >
 
-            <YAxis />
+              {data.map((entry, index) => (
+                <Cell
+                  key={index}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+
+            </Pie>
 
             <Tooltip />
 
-            <Bar
-              dataKey="completed"
-              fill="#2563eb"
-              radius={[8, 8, 0, 0]}
-            />
-
-          </BarChart>
+          </PieChart>
 
         </ResponsiveContainer>
 
