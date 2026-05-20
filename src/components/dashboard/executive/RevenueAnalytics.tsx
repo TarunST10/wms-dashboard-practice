@@ -1,6 +1,11 @@
 'use client';
 
 import {
+  useEffect,
+  useState,
+} from 'react';
+
+import {
   ResponsiveContainer,
   AreaChart,
   Area,
@@ -10,6 +15,8 @@ import {
 } from 'recharts';
 
 import ChartCard from '@/components/dashboard/shared/ChartCard';
+
+import ChartLoading from '@/components/dashboard/shared/Chartloading';
 
 const data = [
   { month: 'Jan', revenue: 22000 },
@@ -21,6 +28,23 @@ const data = [
 ];
 
 export default function RevenueAnalytics() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200);
+
+    return () => clearTimeout(timer);
+
+  }, []);
+
+  if (loading) {
+    return <ChartLoading />;
+  }
+
   return (
     <ChartCard
       title="Revenue Analytics"

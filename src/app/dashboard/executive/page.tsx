@@ -15,6 +15,14 @@ import ExecutiveInsights from '@/components/dashboard/executive/ExecutiveInsight
 
 import DashboardFilters from '@/components/dashboard/shared/DashBoardFilters';
 
+import NotificationsPanel from '@/components/dashboard/shared/NotificationPanel';
+
+import ActivityFeed from '@/components/dashboard/shared/ActivityFeed';
+
+import AnalyticsTabs from '@/components/dashboard/shared/AnalyticsTabs';
+
+import PageWrapper from '@/components/dashboard/shared/PageWrapper';
+
 export default function ExecutivePage() {
 
   const [search, setSearch] = useState('');
@@ -24,46 +32,66 @@ export default function ExecutivePage() {
   return (
     <DashboardLayout>
 
-      <div className="space-y-6">
+      <PageWrapper>
 
-        <div>
+        <div className="space-y-6">
 
-          <h1 className="text-3xl font-bold text-gray-900">
-            Executive Dashboard
-          </h1>
+          {/* Header */}
+          <div>
 
-          <p className="text-gray-600 mt-2">
-            Enterprise-wide wealth management analytics overview.
-          </p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+              Executive Dashboard
+            </h1>
+
+            <p className="text-gray-600 dark:text-gray-400 mt-2">
+              Enterprise-wide wealth management analytics overview.
+            </p>
+
+          </div>
+
+          {/* Filters */}
+          <DashboardFilters
+            search={search}
+            setSearch={setSearch}
+            status={status}
+            setStatus={setStatus}
+            period={period}
+            setPeriod={setPeriod}
+          />
+
+          {/* Analytics Tabs */}
+          <AnalyticsTabs />
+
+          {/* KPI Overview */}
+          <ExecutiveOverview />
+
+          {/* Portfolio Stats */}
+          <PortfolioSummary />
+
+          {/* Charts */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
+            <PerformanceInsights />
+
+            <RevenueAnalytics />
+
+          </div>
+
+          {/* Risk */}
+          <RiskAssessment />
+
+          {/* Notifications */}
+          <NotificationsPanel />
+
+          {/* Activity Feed */}
+          <ActivityFeed />
+
+          {/* Insights */}
+          <ExecutiveInsights />
 
         </div>
 
-        <DashboardFilters
-          search={search}
-          setSearch={setSearch}
-          status={status}
-          setStatus={setStatus}
-          period={period}
-          setPeriod={setPeriod}
-        />
-
-        <ExecutiveOverview />
-
-        <PortfolioSummary />
-
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-
-          <PerformanceInsights />
-
-          <RevenueAnalytics />
-
-        </div>
-
-        <RiskAssessment />
-
-        <ExecutiveInsights />
-
-      </div>
+      </PageWrapper>
 
     </DashboardLayout>
   );

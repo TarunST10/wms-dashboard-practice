@@ -1,7 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+
+import {
+  usePathname,
+  useRouter,
+} from 'next/navigation';
+
 import { useState } from 'react';
 
 import {
@@ -13,6 +18,8 @@ import {
   LayoutDashboard,
 } from 'lucide-react';
 
+import ThemeToggle from '@/components/dashboard/shared/ThemeToggle';
+
 export default function DashboardLayout({
   children,
 }: {
@@ -21,10 +28,12 @@ export default function DashboardLayout({
 
   const pathname = usePathname();
 
+  const router = useRouter();
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex bg-gray-100 dark:bg-gray-950">
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
@@ -38,8 +47,11 @@ export default function DashboardLayout({
       <aside
         className={`
           fixed md:static top-0 left-0 z-50
-          w-64 h-screen bg-white shadow-xl p-6
+          w-64 h-screen
+          bg-white dark:bg-gray-900
+          shadow-xl p-6
           transition-transform duration-300
+          overflow-y-auto
           ${
             sidebarOpen
               ? 'translate-x-0'
@@ -56,7 +68,7 @@ export default function DashboardLayout({
           </h1>
 
           <button
-            className="md:hidden"
+            className="md:hidden text-gray-900 dark:text-white"
             onClick={() => setSidebarOpen(false)}
           >
             <X size={24} />
@@ -77,7 +89,7 @@ export default function DashboardLayout({
               ${
                 pathname === '/dashboard/executive'
                   ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600'
               }
             `}
           >
@@ -107,7 +119,7 @@ export default function DashboardLayout({
               ${
                 pathname === '/dashboard/advisor'
                   ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600'
               }
             `}
           >
@@ -137,7 +149,7 @@ export default function DashboardLayout({
               ${
                 pathname === '/dashboard/operations'
                   ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600'
               }
             `}
           >
@@ -167,7 +179,7 @@ export default function DashboardLayout({
               ${
                 pathname === '/dashboard/compliance'
                   ? 'bg-blue-600 text-white shadow-lg'
-                  : 'text-gray-600 hover:bg-blue-50 hover:text-blue-600'
+                  : 'text-gray-600 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600'
               }
             `}
           >
@@ -189,6 +201,56 @@ export default function DashboardLayout({
 
         </nav>
 
+        {/* Sidebar Analytics */}
+        <div
+          className="
+            mt-10 p-5 rounded-2xl
+            bg-blue-600 text-white
+          "
+        >
+
+          <p className="text-sm text-blue-100">
+            Monthly Revenue
+          </p>
+
+          <h3 className="text-3xl font-bold mt-2">
+            $12.4M
+          </h3>
+
+          <div className="mt-4">
+
+            <div className="flex items-center justify-between text-sm">
+
+              <span className="text-blue-100">
+                Growth
+              </span>
+
+              <span>
+                +18%
+              </span>
+
+            </div>
+
+            <div
+              className="
+                w-full h-2 rounded-full
+                bg-blue-400 mt-2 overflow-hidden
+              "
+            >
+
+              <div
+                className="
+                  h-full bg-white rounded-full
+                  w-[78%]
+                "
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
       </aside>
 
       {/* Main Content */}
@@ -199,7 +261,9 @@ export default function DashboardLayout({
           onClick={() => setSidebarOpen(true)}
           className="
             fixed top-4 left-4 z-30 md:hidden
-            bg-white shadow-lg rounded-xl p-3
+            bg-white dark:bg-gray-900
+            shadow-lg rounded-xl p-3
+            text-gray-900 dark:text-white
           "
         >
           <Menu size={22} />
@@ -208,67 +272,43 @@ export default function DashboardLayout({
         {/* Header */}
         <header
           className="
-            bg-white border-b shadow-sm
+            bg-white dark:bg-gray-900
+            border-b border-gray-200 dark:border-gray-800
+            shadow-sm
             px-6 py-4
             flex items-center justify-between
             sticky top-0 z-30
-            backdrop-blur-lg bg-white/90
+            backdrop-blur-lg
           "
         >
 
           <div className="ml-14 md:ml-0">
 
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               Wealth Management System
             </h2>
 
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
               Enterprise Analytics Dashboard
             </p>
 
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
 
-            {/* KPI */}
-            <div className="hidden lg:flex items-center gap-6">
-
-              <div>
-
-                <p className="text-xs text-gray-400">
-                  Revenue
-                </p>
-
-                <h3 className="font-bold text-gray-900">
-                  $12.4M
-                </h3>
-
-              </div>
-
-              <div>
-
-                <p className="text-xs text-gray-400">
-                  Clients
-                </p>
-
-                <h3 className="font-bold text-gray-900">
-                  248
-                </h3>
-
-              </div>
-
-            </div>
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* User */}
             <div className="flex items-center gap-4">
 
               <div className="text-right hidden sm:block">
 
-                <p className="font-semibold text-gray-900">
+                <p className="font-semibold text-gray-900 dark:text-white">
                   Tarun
                 </p>
 
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 dark:text-gray-400">
                   Frontend Intern
                 </p>
 
@@ -284,6 +324,27 @@ export default function DashboardLayout({
               >
                 T
               </div>
+
+              {/* Logout */}
+              <button
+                onClick={() => {
+
+                  document.cookie =
+                    'wms-auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                  router.push('/login');
+
+                }}
+                className="
+                  px-4 py-2 rounded-xl
+                  bg-red-500 text-white
+                  text-sm font-semibold
+                  hover:bg-red-600
+                  transition
+                "
+              >
+                Logout
+              </button>
 
             </div>
 
